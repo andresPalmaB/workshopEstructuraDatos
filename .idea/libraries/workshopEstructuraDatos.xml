@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="workshopEstructuraDatos">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/homework2-tests.jar!/" />
+      <root url="jar://$PROJECT_DIR$/junit-dist.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
