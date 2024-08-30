@@ -11,14 +11,14 @@ public class HtmlValidator {
 
 		for (HtmlTag etiqueta : tags){
 			if (etiqueta.openTag){
-				pilaEtiquetasResultado.add(etiqueta);
+				pilaEtiquetasResultado.push(etiqueta);
 			} else {
 				if (pilaEtiquetasResultado.isEmpty()){
-					return null;
+					return pilaEtiquetasResultado;
 				} else {
-					if (etiqueta.matches(pilaEtiquetasResultado.lastElement())){
+					if (etiqueta.matches(pilaEtiquetasResultado.peek())){
 
-						pilaEtiquetasResultado.removeLast();
+						pilaEtiquetasResultado.pop();
 					} else {
 						return pilaEtiquetasResultado;
 					}
