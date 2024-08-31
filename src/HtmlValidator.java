@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 
 public class HtmlValidator {
@@ -10,17 +11,18 @@ public class HtmlValidator {
 		Stack<HtmlTag> pilaEtiquetasResultado = new Stack<>();
 
 		for (HtmlTag etiqueta : tags){
-			if (etiqueta.openTag){
+			if (etiqueta.isOpenTag()){
 				pilaEtiquetasResultado.add(etiqueta);
 			} else {
-				if (pilaEtiquetasResultado.isEmpty()){
-					return null;
-				} else {
-					if (etiqueta.matches(pilaEtiquetasResultado.lastElement())){
-
-						pilaEtiquetasResultado.removeLast();
+				if (!etiqueta.isSelfClosing()){
+					if (pilaEtiquetasResultado.isEmpty()){
+						return null;
 					} else {
-						return pilaEtiquetasResultado;
+						if (etiqueta.matches(pilaEtiquetasResultado.lastElement())){
+							pilaEtiquetasResultado.removeLast();
+						} else {
+							return pilaEtiquetasResultado;
+						}
 					}
 				}
 			}
